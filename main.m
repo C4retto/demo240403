@@ -3,12 +3,17 @@ function main
     embfile = sprintf('dataset/embeddings.emb');
     NetEmb = EmbRead(embfile);
 
-    p = testnetwork(pname);
+    maxgen = 100;
     popsize = 102;
+    pm = 0.15;
+    pc = 0.5;
+    pc2 = 0.5;
+
+    p = testnetwork(pname);
     runTime = 20;
         result = zeros(4,runTime);
         for runtime = 1:runTime
-            [pop,~] = init6(p, NetEmb, popsize);
+            pop = demo(p,popsize,maxgen,pm,pc,pc2,NetEmb);
             modular = zeros(1,popsize);
             for ii = 1:popsize
                 modular(1,ii) = modularity(p.adj, Decode(pop(ii,:)));
