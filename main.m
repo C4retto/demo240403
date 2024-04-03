@@ -6,22 +6,27 @@ function main
     maxgen = 100;
     popsize = 102;
     pm = 0.15;
-    pc = 0.5;
-    pc2 = 0.5;
+    pc = 0.1:0.1:1;
+    pc2 = 0.1:0.1:1;
 
     p = testnetwork(pname);
-    runTime = 20;
+    runTime = 10;
+    for cc = pc
+    for cc2 = pc2
+        disp([cc,cc2]);
         result = zeros(4,runTime);
         for runtime = 1:runTime
-            pop = demo(p,popsize,maxgen,pm,pc,pc2,NetEmb);
+            pop = demo(p,popsize,maxgen,pm,cc,cc2,NetEmb);
             modular = zeros(1,popsize);
             for ii = 1:popsize
                 modular(1,ii) = modularity(p.adj, Decode(pop(ii,:)));
             end
             result(1,runtime) = min(modular);
-            result(2,runtime) = min(modular);
+            result(2,runtime) = max(modular);
             result(3,runtime) = std(modular);
             result(4,runtime) = mean(modular);
         end
         disp(result);
+    end
+    end
 end
