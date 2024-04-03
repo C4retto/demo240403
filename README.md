@@ -1,4 +1,5 @@
-**Q3:** 真正 matter 的是中心点信息还是`AssignNode()`方法?
-**A:**  从对 **_ver.1.5.2_** 生成的解来看, 反而在 `param=1` 的时候生成的解最好... 应该是分配节点这件事本身比较重要. 需要在分配解的过程进行控制. 
-
-`main init.`的部分参考了cemoea.
+基于 NCMOEA 的初始化生成的
+label-based representation
+生成
+locus-based representation
+.
